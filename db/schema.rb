@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_03_073300) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_03_074901) do
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -19,6 +19,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_03_073300) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password"
+  end
+
+  create_table "laptops", force: :cascade do |t|
+    t.string "laptop_name"
+    t.string "brand"
+    t.string "model"
+    t.float "price"
+    t.float "sale_price"
+    t.boolean "on_off_sale"
+    t.string "processor_brand"
+    t.string "processor_name"
+    t.integer "ram"
+    t.integer "ssd"
+    t.integer "hdd"
+    t.string "operating_system"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "regions", force: :cascade do |t|
