@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_03_074901) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_03_085623) do
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -34,6 +34,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_03_074901) do
     t.integer "ssd"
     t.integer "hdd"
     t.string "operating_system"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.float "total"
+    t.datetime "order_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
