@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_03_072020) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_03_073300) do
   create_table "customers", force: :cascade do |t|
-    t.string "firstName"
-    t.string "lastName"
+    t.string "first_name"
+    t.string "last_name"
     t.string "email"
     t.string "address"
     t.datetime "created_at", null: false
@@ -22,8 +22,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_03_072020) do
   end
 
   create_table "regions", force: :cascade do |t|
-    t.string "regionName"
-    t.float "taxRate"
+    t.string "region_name"
+    t.float "tax_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
