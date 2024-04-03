@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_03_085623) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_03_091427) do
   create_table "customers", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -38,6 +38,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_03_085623) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "order_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "laptop_id", null: false
+    t.integer "quantity"
+    t.float "unit_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["laptop_id"], name: "index_order_items_on_laptop_id"
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.float "total"
     t.datetime "order_date"
@@ -52,4 +63,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_03_085623) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "order_items", "laptops"
+  add_foreign_key "order_items", "orders"
 end
