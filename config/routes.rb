@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+
+  resources :laptops, only: [:index, :show]
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   # get 'laptops/index'
   # get 'laptops/show'
-  resources :laptops, only: [:index, :show]
 
-
+  root "laptops#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

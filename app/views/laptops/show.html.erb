@@ -1,4 +1,7 @@
 <h1><%= @laptop.brand %> <%= @laptop.laptop_name %></h1>
+<% if @laptop.image.present? %>
+      <%= image_tag(@laptop.image, size: '200x200') %>
+<% end %>
 <p><%= @laptop.model %></p>
 <p><%= number_with_delimiter(number_with_precision(@laptop.price, precision: 2)) %></p>
 <p><%= @laptop.processor %></p>

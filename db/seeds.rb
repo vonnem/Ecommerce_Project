@@ -35,3 +35,5 @@ laptops.each do |l|
     puts "Error creating #{l["Product"]}. #{laptop.errors.full_messages.join(", ")}"
   end
 end
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
