@@ -13,6 +13,7 @@ laptops.each do |l|
   # puts l["Price_euros"]
   #Convert Euro price to Canadian dollars.
   price_dollars = l["Price_euros"].to_f * 1.46
+  description = Faker::Lorem.paragraph(sentence_count: 3)
 
   #Create the laptops
   laptop = Laptop.create(
@@ -25,7 +26,8 @@ laptops.each do |l|
     storage: l["Memory"],
     operating_system: l["OpSys"],
     gpu: l["Gpu"],
-    size: l["Inches"]
+    size: l["Inches"],
+    description: description
     )
 
   if laptop.valid?

@@ -1,10 +1,29 @@
-<h1><%= @laptop.brand %> <%= @laptop.laptop_name %></h1>
-<% if @laptop.image.present? %>
-      <%= image_tag(@laptop.image, size: '200x200') %>
-<% end %>
-<p><%= @laptop.model %></p>
-<p><%= number_with_delimiter(number_with_precision(@laptop.price, precision: 2)) %></p>
-<p><%= @laptop.processor %></p>
-<p><%= @laptop.ram %></p>
-<p><%= @laptop.storage %></p>
-<p><%= @laptop.operating_system %></p>
+<div class="container">
+ <div class="columns is-centered">
+  <div class="column is-half">
+   <div class="box">
+    <h1 class="title has-text-centered"><%= @laptop.brand %> <%= @laptop.laptop_name %></h1>
+      <div class="has-text-centered">
+       <% if @laptop.image.present? %>
+        <%= image_tag(@laptop.image, size: '200x200')%>
+       <% end %>
+      </div>
+      <p>This product is a <%= @laptop.model %> laptop.
+       It features a <%= @laptop.processor %> CPU, <%= @laptop.gpu %> GPU, <%= @laptop.ram %> of RAM, and <%= @laptop.storage %> of storage.
+       It runs on the <%= @laptop.operating_system %> operating system.
+       <%= @laptop.description %>
+       </p>
+      <div class="content">
+       <p class="has-text-weight-bold">Laptop Features:</p>
+       <p><%= @laptop.model %></p>
+       <p>$<%= number_with_delimiter(number_with_precision(@laptop.price, precision: 2)) %></p>
+       <p><%= @laptop.processor %></p>
+       <p><%= @laptop.ram %></p>
+       <p><%= @laptop.storage %></p>
+       <p><%= @laptop.operating_system %></p>
+       <p><%= @laptop.gpu %></p>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>

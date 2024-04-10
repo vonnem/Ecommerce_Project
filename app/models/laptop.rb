@@ -11,7 +11,7 @@ class Laptop < ApplicationRecord
     ["order_items", "orders"]
   end
   def self.ransackable_attributes(auth_object = nil)
-    ["brand", "created_at", "gpu", "id", "id_value", "laptop_name", "model", "on_off_sale", "operating_system", "price", "processor", "ram", "sale_price", "size", "storage", "updated_at", "image_attachment_id_eq", "image_blob_id_eq"]
+    ["brand", "created_at", "gpu", "id", "id_value", "laptop_name", "model", "on_off_sale", "operating_system", "price", "processor", "ram", "sale_price", "size", "storage", "updated_at", "image_attachment_id_eq", "image_blob_id_eq", "description"]
   end
 
 

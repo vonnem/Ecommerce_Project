@@ -1,4 +1,11 @@
 <link rel="stylesheet" type="text/css" href="laptops.css">
+<%= form_with(url: search_laptops_path, method: :get, local: true) do |form| %>
+  <div class="field is-grouped mb-5">
+    <%= text_field_tag(:keywords, nil, class:"input", placeholder: 'Search for Laptop') %>
+    <%= select_tag(:brand, options_for_select(['All Brands', "Razer"]), class: "select") %>
+  </div class="control">
+    <%= submit_tag("Search", class: "button is-primary") %>
+<% end %>
 
 <h1 class="title has-text-centered">Available Laptops</h1>
   <div class="columns is-multiline">

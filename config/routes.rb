@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :laptops, only: [:index, :show]
+  resources :laptops, only: [:index, :show] do
+    collection do
+      get "search"
+    end
+  end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # get 'laptops/index'
