@@ -2,7 +2,7 @@
 <%= form_with(url: search_laptops_path, method: :get, local: true) do |form| %>
   <div class="field is-grouped mb-5">
     <%= text_field_tag(:keywords, nil, class:"input", placeholder: 'Search for Laptop') %>
-    <%= select_tag(:brand, options_for_select(['All Brands', "Razer"]), class: "select") %>
+    <%= select_tag(:brand, options_for_select(['All Brands'] + @brands), class: "select") %>
   </div class="control">
     <%= submit_tag("Search", class: "button is-primary") %>
 <% end %>

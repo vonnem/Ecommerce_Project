@@ -1,5 +1,6 @@
 class LaptopsController < ApplicationController
   def index
+    @brands = Laptop.distinct.pluck(:brand)
     @laptops = Laptop.all.order("price DESC").page(params[:page]).per(50)
   end
 
@@ -8,6 +9,8 @@ class LaptopsController < ApplicationController
   end
 
   def search
+    @brands = Laptop.distinct.pluck(:brand)
+
     if params[:keywords].present? || params[:brand] != "All Brands"
       wildcard_search = "%#{params[:keywords]}%"
       @laptops = Laptop.where("laptop_name LIKE ?", wildcard_search).page(params[:page]).per(8)
