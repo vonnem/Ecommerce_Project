@@ -13,7 +13,7 @@ class LaptopsController < ApplicationController
 
     if params[:keywords].present? || params[:brand] != "All Brands"
       wildcard_search = "%#{params[:keywords]}%"
-      @laptops = Laptop.where("laptop_name LIKE ?", wildcard_search).page(params[:page]).per(8)
+      @laptops = Laptop.where("laptop_name LIKE ?", wildcard_search).page(params[:page]).per(16)
 
       if params[:brand] != "All Brands"
        @laptops = @laptops.where(brand: params[:brand])
