@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get :about, to: 'about#show'
+  get :contact, to: 'contact#show'
   resources :laptops, only: [:index, :show] do
     collection do
       get "search"
@@ -9,6 +11,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # get 'laptops/index'
   # get 'laptops/show'
+
+  resources :cart, only: [:create, :destroy]
 
   root "laptops#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
