@@ -2,6 +2,19 @@ class LaptopsController < ApplicationController
   def index
     @brands = Laptop.distinct.pluck(:brand)
     @laptops = Laptop.all.order("price DESC").page(params[:page]).per(50)
+
+    if params[:sale].present?
+      @laptops = Laptop.where(on_off_sale: true).page(params[:page]).per(50)
+    end
+
+    if params[:new].present?
+      @laptops = Laptop.where("created_at >= ?", 1.hour.ago).page(params[:page]).per(50)
+    end
+
+    if params[:updated].present?
+      @laptops = Laptop.where("updated_at >= ?", 1.hour.ago).page(params[:page]).per(50)
+    end
+
   end
 
   def show

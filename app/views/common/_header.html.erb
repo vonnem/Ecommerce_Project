@@ -4,7 +4,15 @@
       <li><%= link_to "Home", root_path, class: "nav-button" %></li>
       <li><%= link_to "About", about_path, class: "nav-button" %></li>
       <li><%= link_to "Contact", contact_path, class: "nav-button" %></li>
-      <li><%= link_to "Cart", carts_path, class: "nav-button" %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "Cart(#{session[:shopping_cart].length})", carts_path, class: "nav-button" %></li>
+      <% end %>
+      <% if user_signed_in? %>
+        <li><%= button_to "Logout", destroy_user_session_path, method: :delete, class: "nav-button" %></li>
+      <% else %>
+        <li><%= link_to "Sign up", new_user_registration_path, class: "nav-button" %></li>
+        <li><%= button_to "Login", new_user_session_path, class: "nav-button" %></li>
+      <% end %>
     </ul>
   </div>
 </header>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
 
   get :about, to: 'about#show'
   get :contact, to: 'contact#show'
@@ -17,6 +18,7 @@ Rails.application.routes.draw do
       patch 'update_quantity', to: 'carts#update_quantity'
     end
   end
+
 
   root "laptops#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

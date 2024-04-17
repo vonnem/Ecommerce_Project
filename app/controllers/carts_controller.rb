@@ -20,7 +20,7 @@ class CartsController < ApplicationController
 
     laptop = Laptop.find(id)
     flash[:notice] = "- #{laptop.laptop_name} removed from cart."
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   def update_quantity
@@ -32,11 +32,13 @@ class CartsController < ApplicationController
   end
 
   def index
+
     @cart_items = []
     session[:shopping_cart].each do |item_id|
       laptop = Laptop.find_by(id: item_id)
       @cart_items << laptop if laptop
     end
+    @total_price = @cart_items.sum(&:price)
   end
 
 end

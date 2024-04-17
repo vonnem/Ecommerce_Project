@@ -16,3 +16,11 @@
     </ul>
   <% end %>
 </section>
+<section class="is-flex is-flex-direction-column is-align-items-center">
+  <div class="mb-3">
+    Sub-Total: <%= number_to_currency(@total_price) %>
+  </div>
+  <div>
+    <%= button_to 'Order' %>
+  </div>
+</section>

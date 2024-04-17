@@ -7,6 +7,27 @@
   </div>
 <% end %>
 
+<%= form_with(url: root_path, method: :get, local: true, id: "sale-form") do |form| %>
+  <div class="checkboxes-horizontal">
+    <%= check_box_tag "sale", "1", params[:sale].present?, class: "checkbox", onchange: "this.form.submit()" %>
+    <%= label_tag "sale", "Sale" %>
+  </div>
+<% end %>
+
+<%= form_with(url: root_path, method: :get, local: true, id: "new-form") do |form| %>
+  <div class="checkboxes-horizontal">
+    <%= check_box_tag "new", "1", params[:new].present?, class: "checkbox", onchange: "this.form.submit()" %>
+    <%= label_tag "new", "New" %>
+  </div>
+<% end %>
+
+<%= form_with(url: root_path, method: :get, local: true, id: "new-form") do |form| %>
+  <div class="checkboxes-horizontal">
+    <%= check_box_tag "updated", "1", params[:updated].present?, class: "checkbox", onchange: "this.form.submit()" %>
+    <%= label_tag "updated", "Updated" %>
+  </div>
+<% end %>
+
 <h1 class="title has-text-centered">Available Laptops</h1>
   <div class="columns is-multiline">
     <% @laptops.each do |laptop| %>
@@ -17,19 +38,26 @@
       <% else %>
         <div class="laptop-image-placeholder"></div>
       <% end %>
-        <div class="laptop-name"> <%= link_to laptop.brand + ' ' + laptop.laptop_name, laptop %> - $<%= number_with_delimiter(number_with_precision(laptop.price, precision: 2)) %> </div>
-        <div>
-          <% if cart.include?(laptop) %>
-            <%= button_to cart_path(laptop), method: :delete do %>
-            Remove from Carts
+        <div class="laptop-name"> <%= link_to laptop.brand + ' ' + laptop.laptop_name, laptop %> -
+        <% if laptop.on_off_sale? %>
+          $<%= number_with_delimiter(number_with_precision(laptop.sale_price, precision: 2)) %> </div>
+        <% else %>
+          $<%= number_with_delimiter(number_with_precision(laptop.price, precision: 2)) %> </div>
+        <% end %>
+        <% if user_signed_in? %>
+          <div>
+            <% if cart.include?(laptop) %>
+              <%= button_to cart_path(laptop), method: :delete do %>
+              Remove from Carts
+              <% end %>
+            <% else %>
+              <%= form_with url: carts_path, method: :post do %>
+                <%= hidden_field_tag(:id, laptop.id) %>
+                <%= button_tag 'Add to Cart' %>
+              <% end %>
             <% end %>
-          <% else %>
-            <%= form_with url: carts_path, method: :post do %>
-              <%= hidden_field_tag(:id, laptop.id) %>
-              <%= button_tag 'Add to Cart' %>
-            <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div>
     <% end %>
