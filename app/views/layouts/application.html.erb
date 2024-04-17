@@ -14,21 +14,10 @@
   <body>
     <%= render partial: 'common/header' %>
     <%= debug session[:shopping_cart] %>
+    <%= debug session[:quantities] %>
     <% if flash[:notice] %>
       <p><%= flash[:notice] %></p>
     <% end %>
-    <section>
-      <% if cart.present? %>
-        <ul>
-          <% cart.each do |l| %>
-            <li class= "level-right">
-              <%= l.laptop_name %>
-              <%= button_to 'Remove', cart_path(l), method: :delete %>
-            </li>
-          <% end %>
-        </ul>
-      <% end %>
-    </section>
     <section class="section">
       <div class="container">
       </div>

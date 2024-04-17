@@ -12,7 +12,11 @@ Rails.application.routes.draw do
   # get 'laptops/index'
   # get 'laptops/show'
 
-  resources :cart, only: [:create, :destroy]
+  resources :carts, only: [:index, :create, :destroy], as: 'carts' do
+    member do
+      patch 'update_quantity', to: 'carts#update_quantity'
+    end
+  end
 
   root "laptops#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
