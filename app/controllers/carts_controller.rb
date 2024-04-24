@@ -32,7 +32,6 @@ class CartsController < ApplicationController
   end
 
   def index
-
     @cart_items = []
     session[:shopping_cart].each do |item_id|
       laptop = Laptop.find_by(id: item_id)

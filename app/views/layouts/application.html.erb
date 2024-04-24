@@ -13,8 +13,8 @@
 
   <body>
     <%= render partial: 'common/header' %>
-    <%= debug session[:shopping_cart] %>
-    <%= debug session[:quantities] %>
+    <%#= debug session[:shopping_cart] %>
+    <%#= debug session[:quantities] %>
     <% if flash[:notice] %>
       <p><%= flash[:notice] %></p>
     <% end %>
