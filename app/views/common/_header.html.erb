@@ -1,18 +1,29 @@
-<header class="navbar">
-  <div class="nav-bar-menu">
-    <ul>
-      <li><%= link_to "Home", root_path, class: "nav-button" %></li>
-      <li><%= link_to "About", about_path, class: "nav-button" %></li>
-      <li><%= link_to "Contact", contact_path, class: "nav-button" %></li>
-      <% if user_signed_in? %>
-        <li><%= link_to "Cart(#{session[:shopping_cart].length})", carts_path, class: "nav-button" %></li>
-      <% end %>
-      <% if user_signed_in? %>
-        <li><%= button_to "Logout", destroy_user_session_path, method: :delete, class: "nav-button" %></li>
-      <% else %>
-        <li><%= link_to "Sign up", new_user_registration_path, class: "nav-button" %></li>
-        <li><%= button_to "Login", new_user_session_path, class: "nav-button" %></li>
-      <% end %>
-    </ul>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="#navbarMenu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
   </div>
-</header>
+  <div id="navbarMenu" class="navbar-menu">
+
+    <div class="navbar-start">
+      <%= link_to "Home", root_path, class: "navbar-item" %>
+      <%= link_to "About", about_path, class: "navbar-item" %>
+      <%= link_to "Contact", contact_path, class: "navbar-item" %>
+      <% if user_signed_in? %>
+        <%= link_to "Cart(#{session[:shopping_cart].length})", carts_path, class: "navbar-item" %>
+      <% end %>
+    </div>
+
+    <div class="navbar-end">
+      <% if user_signed_in? %>
+        <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "navbar-item" %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, class: "navbar-item" %>
+        <%= button_to "Login", new_user_session_path, class: "navbar-item", method: :get %>
+      <% end %>
+    </div>
+  </div>
+</nav>
